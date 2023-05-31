@@ -1,5 +1,6 @@
 package com.lowwall.zeomzeom.controller;
 
+import com.lowwall.zeomzeom.service.AnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 //@Tag(name = "6. Answer", description = "Answer API")
 public class AnswerController {
+    private final AnswerService answerService;
+
     @PostMapping("/{answerId}")
     //@Operation(summary = "답변 등록", description = "2-2-2 오늘의 질문, 답변 등록")
     public String answer() {

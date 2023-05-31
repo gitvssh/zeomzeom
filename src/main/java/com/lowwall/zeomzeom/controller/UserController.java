@@ -1,5 +1,6 @@
 package com.lowwall.zeomzeom.controller;
 
+import com.lowwall.zeomzeom.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 //@Tag(name = "1. User", description = "User API")
 public class UserController {
+    private final UserService userService;
+
     @PostMapping("/join")
     //@Operation(summary = "회원가입", description = "1-1 가입, 사용자 정보 등록")
     public String join() {

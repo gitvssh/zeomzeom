@@ -1,5 +1,6 @@
 package com.lowwall.zeomzeom.controller;
 
+import com.lowwall.zeomzeom.service.PairService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 //@Tag(name = "3. Pair", description = "Pair API")
 public class PairController {
+    private final PairService pairService;
     @PostMapping("/")
     //@Operation(summary = "페어 신청 보내기", description = "페어테이블에 페어정보 등록 및 페어코드 생성, 반환")
     public String pair() {
