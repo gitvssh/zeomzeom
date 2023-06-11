@@ -13,7 +13,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @NoArgsConstructor
 public class Answer extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private Long id;
 
