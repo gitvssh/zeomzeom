@@ -4,13 +4,10 @@ import com.lowwall.zeomzeom.controller.dto.*;
 import com.lowwall.zeomzeom.entity.User;
 import com.lowwall.zeomzeom.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 //@Tag(name = "1. User", description = "User API")
@@ -26,7 +23,7 @@ public class UserController {
         User user = new User();
         user.setName(userJoinRequestDTO.getName());
 //        user.setUserId(userJoinRequestDTO.getUserId());
-        user.setPassword(userJoinRequestDTO.getPassword());
+//        user.setPassword(userJoinRequestDTO.getPassword());
 
         Long aLong = userService.saveUser(user);
 
@@ -66,17 +63,21 @@ public class UserController {
     }
 
     @PostMapping("{userId}")
+    @Transactional
     //@Operation(summary = "사용자 정보 수정", description = "4-1 프로필 설정, 사용자 정보를 수정한다")
     public UserUpdateResponseDTO update(@PathVariable Long userId, UserUpdateRequestDTO userJoinRequestDTO) {
         User byId = userService.findById(userId);
         //회원정보 조회, 존재여부(o)
 
         //회원정보 수정
-        UserUpdateResponseDTO userUpdateResponseDTO = new UserUpdateResponseDTO();
-        userUpdateResponseDTO.setName(userJoinRequestDTO.getName());
-        userUpdateResponseDTO.setEmail(userJoinRequestDTO.getEmail());
+        //TODO : 서비스 레이어로 이동
+        byId.setName(userJoinRequestDTO.getName());
 
         //수정된 회원정보 반환
+        UserUpdateResponseDTO userUpdateResponseDTO = new UserUpdateResponseDTO();
+        userUpdateResponseDTO.setName(userJoinRequestDTO.getName());
+//        userUpdateResponseDTO.setEmail(userJoinRequestDTO.getEmail());
+
         return userUpdateResponseDTO;
     }
 }

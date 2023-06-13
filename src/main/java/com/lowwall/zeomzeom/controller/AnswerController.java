@@ -5,10 +5,9 @@ import com.lowwall.zeomzeom.controller.dto.AnswerResponseDTO;
 import com.lowwall.zeomzeom.entity.Answer;
 import com.lowwall.zeomzeom.service.AnswerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/answer")
 @RequiredArgsConstructor
 //@Tag(name = "6. Answer", description = "Answer API")
@@ -56,6 +55,7 @@ public class AnswerController {
     @GetMapping("/")
     //@Operation(summary = "답변 목록 조회", description = "3 날짜별 보관함, 카테고리별 ")
     public String list() {
+        System.out.println("답변 목록 조회");
         //답변 전체 조회 반환
         return "answer/list";
     }
